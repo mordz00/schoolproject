@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Students{% endblock %}
+
+{% block content %}
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 6px;
+    }
+</style>
+
+<table>
+    <tr>
+        <th>Full Name</th>
+        <th>Age</th>
+        <th>Course</th>
+        <th>Date</th>
+        <th>Action</th>
+    </tr>
+
+    {% for student in students %}
+    <tr>
+        <td>{{ student.full_name }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.course }}</td>
+        <td>{{ student.created_at }}</td>
+        <td>
+            <a href="{% url 'details' student.id %}">View</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="5">No students found.</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
